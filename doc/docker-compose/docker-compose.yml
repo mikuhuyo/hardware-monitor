@@ -1,0 +1,87 @@
+services:
+  elasticsearch:
+    image: elasticsearch:7.2.0
+    container_name: elasticsearch
+    privileged: true
+    user: root
+    environment:
+      - cluster.name=elasticsearch
+      - discovery.type=single-node
+      - ES_JAVA_OPTS=-Xms256m -Xmx256m
+    volumes:
+      - /root/docker/elasticsearch/plugins:/usr/share/elasticsearch/plugins
+      - /root/docker/elasticsearch/data:/usr/share/elasticsearch/data
+    ports:
+      - 9200:9200
+      - 9300:9300
+
+  logstash:
+    image: logstash:7.2.0
+    container_name: logstash
+    ports:
+      - 4560:4560
+    privileged: true
+    environment:
+      - TZ=Asia/Shanghai
+    volumes:
+      - /root/docker/logstash/logstash.conf:/usr/share/logstash/pipeline/logstash.conf
+    depends_on:
+      - elasticsearch
+    links:
+      - elasticsearch:es
+
+  kibana:
+    image: kibana:7.2.0
+    container_name: kibana
+    ports:
+      - 5601:5601
+    privileged: true
+    links:
+      - elasticsearch:es
+    depends_on:
+      - elasticsearch
+    environment:
+      - elasticsearch.hosts=http://elasticsearch:9200
+
+  emqx:
+    image: emqx/emqx:v4.1.0
+    container_name: emqx
+    privileged: true
+    ports:
+      - 18083:18083
+      - 8081:8081
+      - 8083:8083
+      - 8084:8084
+      - 1883:1883
+    volumes:
+      - /root/docker/emqx/data/emq/emqx.conf:/opt/emqx/etc/emqx.conf
+      - /root/docker/emqx/data/emq/plugins:/opt/emqx/etc/plugins
+
+  mysql:
+    image: mysql:8.0.20
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    container_name: mysql
+    privileged: true
+    environment:
+      MYSQL_ROOT_PASSWORD: yueliminvc@outlook.com
+      TZ: Asia/Shanghai
+    ports:
+      - 3306:3306
+    volumes:
+      - /root/docker/mysql:/var/lib/mysql
+      - /usr/share/zoneinfo/Asia/Shanghai:/etc/localtime
+    network_mode: "host"
+
+  redis:
+    image: redis:6.0.5
+    container_name: redis
+    privileged: true
+    expose:
+      - 6379
+    volumes:
+      - /root/docker/redis/data:/data
+      - /root/docker/redis/conf/redis.conf:/etc/redis/redis.conf
+    ports:
+      - 6379:6379
+    command: redis-server /etc/redis/redis.conf --appendonly yes --requirepass "yueliminvc@outlook.com"

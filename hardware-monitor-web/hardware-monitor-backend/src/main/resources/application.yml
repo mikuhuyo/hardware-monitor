@@ -1,0 +1,31 @@
+server:
+  tomcat:
+    remote-ip-header: x-forwarded-for
+    protocol-header: x-forwarded-proto
+  servlet:
+    context-path: /
+  use-forward-headers: true
+  port: 57100
+
+spring:
+  application:
+    name: @project.artifactId@
+  main:
+    banner-mode: 'off'
+    allow-bean-definition-overriding: true
+  profiles:
+    active: feature
+  http:
+    encoding:
+      charset: UTF-8
+      force: true
+      enabled: true
+  messages:
+    encoding: UTF-8
+
+info:
+  jdk-version: '@java.version@'
+  name: '@project.name@'
+  description: '@project.description@'
+  version: '@project.version@'
+  spring-boot-version: '@spring-boot.version@'
