@@ -1,7 +1,7 @@
-drop database if exists `cold_chain`;
-create database if not exists `cold_chain` character set utf8mb4 collate utf8mb4_unicode_ci;
+drop database if exists `monitor`;
+create database if not exists `monitor` character set utf8mb4 collate utf8mb4_unicode_ci;
 
-use `cold_chain`;
+use `monitor`;
 
 drop table if exists `tb_user`;
 create table if not exists `tb_user`
@@ -45,14 +45,14 @@ create table if not exists `tb_alarm`
   collate utf8mb4_unicode_ci comment '报警配置表';
 
 begin;
-INSERT INTO `cold_chain`.`tb_alarm`(`id`, `name`, `quota_id`, `operator`, `threshold`, `level`, `cycle`, `webhook`, `subject`, `create_time`, `update_time`) VALUES (1582664649262305281, '温度过低', 1582662233267691521, '<', '20', '1', 10, 'https://github.com/mikuhuyo', 'device/temperature/BJ0001', '2022-10-19 17:27:12', '2022-11-01 09:25:02');
-INSERT INTO `cold_chain`.`tb_alarm`(`id`, `name`, `quota_id`, `operator`, `threshold`, `level`, `cycle`, `webhook`, `subject`, `create_time`, `update_time`) VALUES (1582666321032204289, '温度异常', 1582662233267691521, '>', '30', '2', 5, 'https://github.com/mikuhuyo', 'device/temperature/BJ0001', '2022-10-19 17:33:50', '2022-11-01 09:25:15');
-INSERT INTO `cold_chain`.`tb_alarm`(`id`, `name`, `quota_id`, `operator`, `threshold`, `level`, `cycle`, `webhook`, `subject`, `create_time`, `update_time`) VALUES (1583378395777474561, '温度过低', 1582662434636226561, '<', '20', '1', 10, 'https://github.com/mikuhuyo', 'device/temperature/BJ0002', '2022-10-21 16:43:22', '2022-11-01 09:25:09');
-INSERT INTO `cold_chain`.`tb_alarm`(`id`, `name`, `quota_id`, `operator`, `threshold`, `level`, `cycle`, `webhook`, `subject`, `create_time`, `update_time`) VALUES (1583378827048394753, '温度异常', 1582662434636226561, '>', '30', '2', 5, 'https://github.com/mikuhuyo', 'device/temperature/BJ0002', '2022-10-21 16:45:05', '2022-11-01 09:25:24');
-INSERT INTO `cold_chain`.`tb_alarm`(`id`, `name`, `quota_id`, `operator`, `threshold`, `level`, `cycle`, `webhook`, `subject`, `create_time`, `update_time`) VALUES (1583386574108237825, '转速过低', 1582662729126699009, '<', '3000', '1', 10, 'https://github.com/mikuhuyo', 'device/roundPerMinute/BJ0001', '2022-10-21 17:15:52', '2022-10-21 17:15:52');
-INSERT INTO `cold_chain`.`tb_alarm`(`id`, `name`, `quota_id`, `operator`, `threshold`, `level`, `cycle`, `webhook`, `subject`, `create_time`, `update_time`) VALUES (1583386675606200321, '转速过低', 1582662949231190018, '<', '3000', '1', 10, 'https://github.com/mikuhuyo', 'device/roundPerMinute/BJ0002', '2022-10-21 17:16:16', '2022-10-21 17:16:16');
-INSERT INTO `cold_chain`.`tb_alarm`(`id`, `name`, `quota_id`, `operator`, `threshold`, `level`, `cycle`, `webhook`, `subject`, `create_time`, `update_time`) VALUES (1583386752793976834, '转速过高', 1582662729126699009, '>', '6000', '2', 5, 'https://github.com/mikuhuyo', 'device/roundPerMinute/BJ0001', '2022-10-21 17:16:34', '2022-10-21 17:16:34');
-INSERT INTO `cold_chain`.`tb_alarm`(`id`, `name`, `quota_id`, `operator`, `threshold`, `level`, `cycle`, `webhook`, `subject`, `create_time`, `update_time`) VALUES (1583386820351631362, '转速过高', 1582662949231190018, '>', '6000', '2', 5, 'https://github.com/mikuhuyo', 'device/roundPerMinute/BJ0002', '2022-10-21 17:16:51', '2022-10-21 17:16:51');
+INSERT INTO `tb_alarm`(`id`, `name`, `quota_id`, `operator`, `threshold`, `level`, `cycle`, `webhook`, `subject`, `create_time`, `update_time`) VALUES (1582664649262305281, '温度过低', 1582662233267691521, '<', '20', '1', 10, 'https://github.com/mikuhuyo', 'device/temperature/BJ0001', '2022-10-19 17:27:12', '2022-11-01 09:25:02');
+INSERT INTO `tb_alarm`(`id`, `name`, `quota_id`, `operator`, `threshold`, `level`, `cycle`, `webhook`, `subject`, `create_time`, `update_time`) VALUES (1582666321032204289, '温度异常', 1582662233267691521, '>', '30', '2', 5, 'https://github.com/mikuhuyo', 'device/temperature/BJ0001', '2022-10-19 17:33:50', '2022-11-01 09:25:15');
+INSERT INTO `tb_alarm`(`id`, `name`, `quota_id`, `operator`, `threshold`, `level`, `cycle`, `webhook`, `subject`, `create_time`, `update_time`) VALUES (1583378395777474561, '温度过低', 1582662434636226561, '<', '20', '1', 10, 'https://github.com/mikuhuyo', 'device/temperature/BJ0002', '2022-10-21 16:43:22', '2022-11-01 09:25:09');
+INSERT INTO `tb_alarm`(`id`, `name`, `quota_id`, `operator`, `threshold`, `level`, `cycle`, `webhook`, `subject`, `create_time`, `update_time`) VALUES (1583378827048394753, '温度异常', 1582662434636226561, '>', '30', '2', 5, 'https://github.com/mikuhuyo', 'device/temperature/BJ0002', '2022-10-21 16:45:05', '2022-11-01 09:25:24');
+INSERT INTO `tb_alarm`(`id`, `name`, `quota_id`, `operator`, `threshold`, `level`, `cycle`, `webhook`, `subject`, `create_time`, `update_time`) VALUES (1583386574108237825, '转速过低', 1582662729126699009, '<', '3000', '1', 10, 'https://github.com/mikuhuyo', 'device/roundPerMinute/BJ0001', '2022-10-21 17:15:52', '2022-10-21 17:15:52');
+INSERT INTO `tb_alarm`(`id`, `name`, `quota_id`, `operator`, `threshold`, `level`, `cycle`, `webhook`, `subject`, `create_time`, `update_time`) VALUES (1583386675606200321, '转速过低', 1582662949231190018, '<', '3000', '1', 10, 'https://github.com/mikuhuyo', 'device/roundPerMinute/BJ0002', '2022-10-21 17:16:16', '2022-10-21 17:16:16');
+INSERT INTO `tb_alarm`(`id`, `name`, `quota_id`, `operator`, `threshold`, `level`, `cycle`, `webhook`, `subject`, `create_time`, `update_time`) VALUES (1583386752793976834, '转速过高', 1582662729126699009, '>', '6000', '2', 5, 'https://github.com/mikuhuyo', 'device/roundPerMinute/BJ0001', '2022-10-21 17:16:34', '2022-10-21 17:16:34');
+INSERT INTO `tb_alarm`(`id`, `name`, `quota_id`, `operator`, `threshold`, `level`, `cycle`, `webhook`, `subject`, `create_time`, `update_time`) VALUES (1583386820351631362, '转速过高', 1582662949231190018, '>', '6000', '2', 5, 'https://github.com/mikuhuyo', 'device/roundPerMinute/BJ0002', '2022-10-21 17:16:51', '2022-10-21 17:16:51');
 commit;
 
 drop table if exists `tb_quota`;
@@ -75,10 +75,10 @@ create table if not exists `tb_quota`
   collate utf8mb4_unicode_ci comment '指标配置表';
 
 begin;
-INSERT INTO `cold_chain`.`tb_quota`(`id`, `name`, `unit`, `subject`, `value_key`, `sn_key`, `webhook`, `value_type`, `reference_value`, `create_time`, `update_time`) VALUES (1582662233267691521, 'BJ0001-温度指标', '°C', 'device/temperature/BJ0001', 'temperature', 'BJ0001', 'https://github.com/mikuhuyo', 'Integer', '20-30', '2022-10-19 17:17:36', '2022-10-19 17:17:36');
-INSERT INTO `cold_chain`.`tb_quota`(`id`, `name`, `unit`, `subject`, `value_key`, `sn_key`, `webhook`, `value_type`, `reference_value`, `create_time`, `update_time`) VALUES (1582662434636226561, 'BJ0002-温度指标', '°C', 'device/temperature/BJ0002', 'temperature', 'BJ0002', 'https://github.com/mikuhuyo', 'Integer', '20-30', '2022-10-19 17:18:24', '2022-10-19 17:18:41');
-INSERT INTO `cold_chain`.`tb_quota`(`id`, `name`, `unit`, `subject`, `value_key`, `sn_key`, `webhook`, `value_type`, `reference_value`, `create_time`, `update_time`) VALUES (1582662729126699009, 'BJ0001-转速指标', 'r/s', 'device/roundPerMinute/BJ0001', 'roundPerMinute', 'BJ0001', 'https://github.com/mikuhuyo', 'Integer', '3000-6000', '2022-10-19 17:19:34', '2022-10-19 17:20:41');
-INSERT INTO `cold_chain`.`tb_quota`(`id`, `name`, `unit`, `subject`, `value_key`, `sn_key`, `webhook`, `value_type`, `reference_value`, `create_time`, `update_time`) VALUES (1582662949231190018, 'BJ0002-转速指标', 'r/s', 'device/roundPerMinute/BJ0002', 'roundPerMinute', 'BJ0002', 'https://github.com/mikuhuyo', 'Integer', '3000-6000', '2022-10-19 17:20:26', '2022-10-19 17:20:26');
+INSERT INTO `tb_quota`(`id`, `name`, `unit`, `subject`, `value_key`, `sn_key`, `webhook`, `value_type`, `reference_value`, `create_time`, `update_time`) VALUES (1582662233267691521, 'BJ0001-温度指标', '°C', 'device/temperature/BJ0001', 'temperature', 'BJ0001', 'https://github.com/mikuhuyo', 'Integer', '20-30', '2022-10-19 17:17:36', '2022-10-19 17:17:36');
+INSERT INTO `tb_quota`(`id`, `name`, `unit`, `subject`, `value_key`, `sn_key`, `webhook`, `value_type`, `reference_value`, `create_time`, `update_time`) VALUES (1582662434636226561, 'BJ0002-温度指标', '°C', 'device/temperature/BJ0002', 'temperature', 'BJ0002', 'https://github.com/mikuhuyo', 'Integer', '20-30', '2022-10-19 17:18:24', '2022-10-19 17:18:41');
+INSERT INTO `tb_quota`(`id`, `name`, `unit`, `subject`, `value_key`, `sn_key`, `webhook`, `value_type`, `reference_value`, `create_time`, `update_time`) VALUES (1582662729126699009, 'BJ0001-转速指标', 'r/s', 'device/roundPerMinute/BJ0001', 'roundPerMinute', 'BJ0001', 'https://github.com/mikuhuyo', 'Integer', '3000-6000', '2022-10-19 17:19:34', '2022-10-19 17:20:41');
+INSERT INTO `tb_quota`(`id`, `name`, `unit`, `subject`, `value_key`, `sn_key`, `webhook`, `value_type`, `reference_value`, `create_time`, `update_time`) VALUES (1582662949231190018, 'BJ0002-转速指标', 'r/s', 'device/roundPerMinute/BJ0002', 'roundPerMinute', 'BJ0002', 'https://github.com/mikuhuyo', 'Integer', '3000-6000', '2022-10-19 17:20:26', '2022-10-19 17:20:26');
 commit;
 
 drop table if exists `tb_board`;
